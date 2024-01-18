@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/node.js",
+    "dev:deno": "deno task dev"
+  },
+  "dependencies": {
+    "@deno/kv": "^0.7.0",
+    "@hono/node-server": "^1.4.0",
+    "hono": "^3.12.5"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0"
+  }
+}
