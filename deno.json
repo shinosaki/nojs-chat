@@ -3,20 +3,28 @@
     "dev": "deno run --allow-net --watch src/deno.js",
     "build": "deno compile --output run src/deno.js"
   },
-  "unstable": ["kv"],
+  "unstable": [
+    "kv"
+  ],
   "compilerOptions": {
     "jsx": "precompile",
     "jsxImportSource": "hono/jsx"
   },
   "lint": {
-    "include": ["src/"],
+    "include": [
+      "src/"
+    ],
     "rules": {
-      "tags": ["recommended"],
+      "tags": [
+        "recommended"
+      ],
       "exclude": []
     }
   },
   "fmt": {
-    "include": ["src/"],
+    "include": [
+      "src/"
+    ],
     "useTabs": false,
     "singleQuote": true,
     "indentWidth": 2,
@@ -28,5 +36,12 @@
     "hono/streaming": "https://deno.land/x/hono/helper.ts",
     "hono/jsx": "https://deno.land/x/hono/middleware.ts",
     "hono/compress": "https://deno.land/x/hono/middleware.ts"
+  },
+  "deploy": {
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "src/deno.js"
   }
 }
