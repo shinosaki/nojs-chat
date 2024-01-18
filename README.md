@@ -2,6 +2,8 @@
 
 Works on Deno or Node.js with [DenoKV](https://docs.deno.com/kv/manual)
 
+https://github.com/shinosaki/nojs-chat/assets/88357168/0d41558a-0b28-48c5-871e-45ae090e7864
+
 ## Running
 ### on Deno
 ```bash
