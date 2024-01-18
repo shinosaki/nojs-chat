@@ -1,4 +1,4 @@
-# Real-time Chat App without JavaScript/WebSocket
+# Real-time Chat App without JavaScript, WebSocket
 
 Works on Deno or Node.js with [DenoKV](https://docs.deno.com/kv/manual)
 
