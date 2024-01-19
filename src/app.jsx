@@ -37,7 +37,7 @@ app.post('/send', async (c) => {
   const data = { data: message, timestamp: Date.now() }
   const result = await c.kv.atomic()
     .set(['message', data.timestamp], data)
-    .sum(['message', 'count'], BigInt(1))
+    .sum(['message_count'], BigInt(1))
     .commit()
 
   return c.redirect(result.ok ? '/send' : '/send?error=Failed to send message.')
@@ -64,10 +64,12 @@ app.get('/chat', (c) =>
     await s.writeln(<li>----- New message -----</li>)
 
     const getMessageCount = (kv) =>
-      kv.get(['message', 'count']).then((r) => r.value ? Number(r.value.value) : null)
+      kv.get(['message_count']).then((r) => r.value ? Number(r.value.value) : null)
 
     let count = await getMessageCount(c.kv) ?? 0
-    while (!isAborted) {
+    for await (const v of c.kv.watch([['message_count']])) {
+      if (isAborted) break
+
       const latestCount = await getMessageCount(c.kv)
 
       if (count < latestCount) {
@@ -82,8 +84,6 @@ app.get('/chat', (c) =>
 
         count = latestCount
       }
-
-      await sleep(1000)
     }
   })
 )
